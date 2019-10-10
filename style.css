@@ -2,10 +2,11 @@
   position: relative;
   top: 0;
   left: 0;
-  background-image: url('https://images.unsplash.com/photo-1511406361295-0a1ff814c0ce?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ');
+  background-image: none;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #212121;
 }
 #page * {
   box-sizing: border-box;
@@ -26,13 +27,25 @@
   max-width: 30%;
   background-color: #455A64;
   color: white;
-  padding: 3rem 2rem 2rem;
+  padding: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.5);
+}
+.login-box .login-box-heading {
+  display: block;
+  width: 100%;
+  background-color: #607D8B;
+  color: white;
+  font-weight: 700;
+  padding: .3rem 2rem;
+  margin-bottom: .8rem;
+  text-align: center;
 }
 .login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretched;
+  padding: 1rem 2rem 2rem;
 }
 .login-form input[type="text"] {
   display: block;
@@ -42,6 +55,8 @@
   border: 0;
   background-color: white;
   margin-bottom: .8rem;
+  color: #455A64;
+  font-weight: 700;
 }
 .login-form .form-info {
   display: block;
@@ -96,4 +111,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
   color: rgb(54,180,130);
   text-decoration: none;
   font-weight: 700;
+}
+#footer a:hover {
+  color: white;
 }
