@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
 #page {
   position: relative;
   top: 0;
@@ -10,6 +12,7 @@
 }
 #page * {
   box-sizing: border-box;
+  font-family: 'Ubuntu', 'Tahoma';
 }
 #content {
   display: flex;
