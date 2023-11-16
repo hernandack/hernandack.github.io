@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="charset" content="utf-8">
-    <meta name="author" content="Hernandack">
-    <meta name="keyword" content="hernandack, hernandack git, github, hernanda cahyo, hck, hernandack web, hernandack project">
-    <meta name="description" content="Welcome to Hernandack's Projects site">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoolBoard - Pool Toolkits</title>
 
-    <title>Hernandack Project</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="style.css">
-  
-  </head>
-  <body>
-    <section id="page">
-      <main id="content">
-        <section id="login-box" class="login-box">
-          <div class="login-box-heading">
-            <h3>Verification</h3>
-          </div>
-          <form id="login-form" class="login-form" action="" method="POST">
-            <input type="text" name="code" placeholder="Secret Code" required>
-            <span class="form-info">You need to have the secreet code to access the content.</span>
-            <button type="submit" name="submit" class="button-primary">Verify</button>
-          </form>
+</head>
+<body>
+
+    <header class="header config">
+        <div class="config__item" data-config="add-player"><span class="config__item__label">Add Player</span></div>
+        <div class="config__item" data-config="leaderboard"><span class="config__item__label">Leaderboard</span></div>
+        <div class="config__item" data-config="next-game"><span class="config__item__label">Next Game</span></div>
+        <div class="config__item ml bl" data-config="settings"><span class="config__item__label"></span></div>
+        <div class="config__item bl" data-config="fullscreen"><span class="config__item__label"></span></div>
+        <div class="config__item bl" data-config="reset"><span class="config__item__label">Reset Game</span></div>
+    </header>
+
+    <main class="page">
+
+        <section class="players players--3">
+            <article class="board player player--template" data-player-id="0">
+                <div class="player__name">
+                    <span class="player__name__label">{{ player.name }}</span>
+                    <input type="text" name="inp-player-name" placeholder="player" value="" />
+                    <span class="editor player__name__edit"></span>
+                </div>
+                
+                <div class="player__score">{{ player.score }}</div>
+
+                <div class="player__toolbar">
+                    <span class="player__toolbar__item" data-tool="pushout" data-pushout="false"></span>
+                </div>
+                <div class="player__toolbar">
+                    <span class="player__toolbar__item" data-tool="score" data-value="-1">-1</span>
+                    <span class="player__toolbar__item" data-tool="score" data-value="+1">+1</span>
+                    <span class="player__toolbar__item" data-tool="score" data-value="+2">+2</span>
+                </div>
+
+                <div class="player__fouls" data-fouls="0">
+                    <span class="player__foul"></span>
+                    <span class="player__foul"></span>
+                    <span class="player__foul"></span>
+                </div>
+
+                <!-- remove -->
+                <span class="player__remove"></span>
+            </article>
+            
         </section>
-      </main>
-      
-      <!-- footer -->
-      <footer id="footer" class="footer-bottom">
-        <p>Simple project list by <a href="https://twitter.com/hernandack">Hernandack</a> - <a href="https://github.com/hernandack">GitHub</a></p>
-      </footer>
-    </section>
-  </body>
+        
+    </main>
+
+    <aside class="leaderboard">
+        <div class="leaderboard__container">
+            <h3 class="leaderboard__heading">Leaderboard</h3>
+            <div class="leaderboard__list">
+            </div>
+            <span class="leaderboard__container__close"></span>
+        </div>
+    </aside>
+
+    <script src="app.js"></script>
+</body>
 </html>
