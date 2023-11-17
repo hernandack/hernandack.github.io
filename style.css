@@ -60,6 +60,9 @@ h6 {
 .config__item:not(:last-child) {
   border-right: 1px solid #374259;
 }
+.config__item--small {
+  padding: 15px;
+}
 .config__item:hover {
   background-color: #677092;
 }
@@ -266,7 +269,7 @@ h6 {
   right: 0;
   line-height: 0.9;
   filter: invert(1);
-  text-align: right;
+  text-align: center;
 }
 
 .players .player__name--editing input {
@@ -388,7 +391,7 @@ h6 {
   filter: invert(1);
 }
 
-.leaderboard {
+.popup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -407,27 +410,59 @@ h6 {
   transition: opacity 0.3s 0.1s ease-in, visibility 0.05s 0.3s;
   color: white;
 }
-.leaderboard--open {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.17s 0.05s ease-in, visibility 0.05s;
-}
-.leaderboard--open .leaderboard__container {
-  animation: leaderboard 0.5s 0.2s ease-in forwards;
-}
-.leaderboard__heading {
+.popup__heading {
   font-size: 2.5rem;
   width: 100%;
   text-align: center;
   margin-bottom: 0.8em;
 }
-.leaderboard__container {
+.popup__container {
   width: clamp(300px, 30%, 900px);
   background-color: #545B77;
   padding: 30px;
   position: relative;
   opacity: 0;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.4);
 }
+.popup__container__close {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.popup__container__close::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background-image: url('data:image/svg+xml,<svg width="99px" height="99px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="%231C274C"></path></g></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: "";
+}
+.popup__container__close:hover {
+  background-color: #545B77;
+}
+.popup__container__close:hover::after {
+  filter: invert(1);
+}
+.popup--open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.17s 0.05s ease-in, visibility 0.05s;
+}
+.popup--open .popup__container {
+  animation: popup 0.5s 0.2s ease-in forwards;
+}
+
 .leaderboard__container .leaderboard__list {
   display: flex;
   flex-direction: column;
@@ -451,37 +486,66 @@ h6 {
   content: "WIN:";
   padding-right: 5px;
 }
-.leaderboard__container__close {
-  display: block;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  background-color: white;
-  border-radius: 50%;
-}
-.leaderboard__container__close::after {
-  display: block;
+.leaderboard__container .leaderboard__history {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  border-radius: 50%;
-  background-image: url('data:image/svg+xml,<svg width="99px" height="99px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="%231C274C"></path></g></svg>');
-  background-size: contain;
-  background-repeat: no-repeat;
-  content: "";
 }
-.leaderboard__container__close:hover {
-  background-color: #545B77;
+.leaderboard__container .leaderboard__history__group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #374259;
 }
-.leaderboard__container__close:hover::after {
-  filter: invert(1);
+.leaderboard__container .leaderboard__history__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes leaderboard {
+.settings__item {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid #697295;
+  border-bottom: 0;
+  cursor: pointer;
+}
+.settings__item:nth-last-child(2) {
+  border-bottom: 1px solid #697295;
+}
+.settings__item:hover {
+  background-color: #636b8c;
+}
+.settings__item__toggle {
+  width: 40px;
+  height: 20px;
+  border: 4px solid #374259;
+  background-color: #2d3649;
+  color: transparent;
+  border-radius: 10px;
+  position: relative;
+}
+.settings__item__toggle::after {
+  display: block;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  border-radius: 10px;
+  transform: translateX(0);
+  transition: transform 0.2s linear, background-color 0.2s linear;
+}
+.settings__item__toggle[data-value=on]::after {
+  transform: translateX(100%);
+  background-color: #75a39e;
+}
+
+@keyframes popup {
   from {
     opacity: 0;
     transform: translateY(100%);

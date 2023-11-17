@@ -87,6 +87,42 @@ const calculateLeaderboard = (setEmpty=false) => {
     return playersInLeaderboard
 }
 
+const generateLeaderboardHistory = (container) => {
+    if (container !== null) {
+
+        console.log('leaderscore: ' + leaderscore)
+        const elHistory = document.createElement('section')
+        elHistory.classList.add('leaderboard__history')
+
+        leaderscore.forEach((lead, idx) => {
+            const elHistoryGroup = document.createElement('div')
+            const elHistoryItem = document.createElement('div')
+            const elHistoryItemName = document.createElement('span')
+            const elHistoryItemScore = document.createElement('span')
+            const elHistoryItemFouls = document.createElement('span')
+
+            elHistoryGroup.classList.add('leaderboard__history__group')
+            elHistoryItem.classList.add('leaderboard__history__item')
+            elHistoryItemName.classList.add('leaderboard__history__name')
+            elHistoryItemScore.classList.add('leaderboard__history__score')
+            elHistoryItemFouls.classList.add('leaderboard__history__fouls')
+
+            elHistoryItemName.innerText = lead[idx].name
+            elHistoryItemScore.innerText = lead[idx].score
+            elHistoryItemFouls.innerText = lead[idx].fouls
+
+            elHistoryItem.appendChild(elHistoryItemName)
+            elHistoryItem.appendChild(elHistoryItemScore)
+            elHistoryItem.appendChild(elHistoryItemFouls)
+            elHistoryGroup.appendChild(elHistoryItem)
+            elHistory.appendChild(elHistoryGroup)
+            container.appendChild(elHistory)
+
+            console.log('leadercont')
+        })
+    }
+}
+
 const clearGame = (removeScore=false) => {
     if (removeScore) {
         return
@@ -119,6 +155,7 @@ window.onload = () => {
     const nextButton = document.querySelector('[data-config="next-game"]')
     const leaderButton = document.querySelector('[data-config="leaderboard"]')
     const fullButton = document.querySelector('[data-config="fullscreen"]')
+    const settingsButton = document.querySelector('[data-config="settings"]')
 
     const elPlayers = document.querySelector('.players')
 
@@ -141,6 +178,10 @@ window.onload = () => {
 
     // next game
     nextButton.addEventListener('click', () => {
+
+        // prevent next game state if player is empty
+        if (players.length <= 0) return
+
         const result = players.map(a => ({ ...a }))
         leaderscore.push(result)
 
@@ -167,14 +208,15 @@ window.onload = () => {
     // leadersboard
     const leaderPopup = document.querySelector('.leaderboard')
     if (leaderPopup !== null) {
-        const leaderPopupClose = leaderPopup.querySelector('.leaderboard__container__close')
+        const leaderPopupClose = leaderPopup.querySelector('.popup__container__close')
 
+        const leaderContainer = document.querySelector('.leaderboard__container')
         const leaderList = document.querySelector('.leaderboard__list')
         
         leaderButton.addEventListener('click', () => {
             leaderList.innerHTML = ""
             console.log(leaderscore)
-            leaderPopup.classList.add('leaderboard--open')
+            leaderPopup.classList.add('popup--open')
 
             console.log('players: ', players)
             const leaderboardSummary = calculateLeaderboard()
@@ -195,9 +237,11 @@ window.onload = () => {
                 leaderItem.appendChild(leaderItemScore)
                 leaderList.appendChild(leaderItem)
             }
+
+            generateLeaderboardHistory(leaderContainer)
         })
         leaderPopupClose.addEventListener('click', () => {
-            leaderPopup.classList.remove('leaderboard--open')
+            leaderPopup.classList.remove('popup--open')
         })
     }
 
@@ -224,6 +268,40 @@ window.onload = () => {
             }
         }
     })
+
+
+    // settings
+    const settingsPopup = document.querySelector('.settings')
+    if (settingsPopup !== null) {
+        const settingsPopupClose = settingsPopup.querySelector('.popup__container__close')
+        const settingsContainer = document.querySelector('.settings__container')
+
+        settingsButton.addEventListener('click', () => {
+            settingsPopup.classList.add('popup--open')
+        })
+
+        if (settingsContainer !== null) {
+            console.log('setting vontainer')
+            // toggles
+            const settingsToggles = settingsContainer.querySelectorAll('.settings__item__toggle')
+            settingsToggles.forEach(toggle => {
+                toggle.parentElement.addEventListener('click', () => {
+                    console.log('togg')
+                    if (toggle.getAttribute('data-value') == 'on') {
+                        toggle.setAttribute('data-value', 'off')
+                        console.log('on on')
+                    } else {
+                        toggle.setAttribute('data-value', 'on')
+                    }
+                })
+            })
+        }
+
+        settingsPopupClose.addEventListener('click', () => {
+            settingsPopup.classList.remove('popup--open')
+        })
+    }
+    
 
 
     
