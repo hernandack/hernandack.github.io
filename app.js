@@ -100,6 +100,7 @@ const clearGame = (removeScore=false) => {
             elp.querySelector('[data-tool="pushout"]').setAttribute('data-pushout', 'false')
             elp.querySelector('[data-tool="pushout"]').classList.remove('player__toolbar__item--disabled')
         })
+
         players.forEach(player => {
             player.score = 0
             player.fouls = 0
@@ -134,6 +135,7 @@ window.onload = () => {
         players = []
         elPlayers.querySelectorAll('.player:not(.player--template)').forEach(el => el.remove())
         leaderscore = []
+        document.querySelector('.page')?.removeAttribute('data-already-running')
     })
 
 
