@@ -122,6 +122,81 @@ h6 {
   place-content: center;
   margin-top: 48px;
 }
+.page .loader {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  opacity: 0.35;
+}
+.page .loader__bar {
+  background-color: #2d3649;
+  width: 5vw;
+  height: 100%;
+  transform-origin: bottom center;
+}
+.page .loader__bar:nth-child(1) {
+  animation: loaderbar 1s 0.1666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(2) {
+  animation: loaderbar 1s 0.3333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(3) {
+  animation: loaderbar 1s 0.5s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(4) {
+  animation: loaderbar 1s 0.6666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(5) {
+  animation: loaderbar 1s 0.8333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(6) {
+  animation: loaderbar 1s 1s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(7) {
+  animation: loaderbar 1s 1.1666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(8) {
+  animation: loaderbar 1s 1.3333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(9) {
+  animation: loaderbar 1s 1.5s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(10) {
+  animation: loaderbar 1s 1.6666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(11) {
+  animation: loaderbar 1s 1.8333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(12) {
+  animation: loaderbar 1s 2s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(13) {
+  animation: loaderbar 1s 2.1666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(14) {
+  animation: loaderbar 1s 2.3333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(15) {
+  animation: loaderbar 1s 2.5s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(16) {
+  animation: loaderbar 1s 2.6666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(17) {
+  animation: loaderbar 1s 2.8333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(18) {
+  animation: loaderbar 1s 3s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(19) {
+  animation: loaderbar 1s 3.1666666667s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
+.page .loader__bar:nth-child(20) {
+  animation: loaderbar 1s 3.3333333333s cubic-bezier(1, 1.45, 0.66, -0.41) alternate-reverse infinite;
+}
 
 .board {
   border: 1px solid #545B77;
@@ -170,6 +245,7 @@ h6 {
   text-align: center;
   position: relative;
   z-index: 1;
+  animation: player 0.6s ease-in forwards;
 }
 .players .player--template {
   display: none;
@@ -624,5 +700,25 @@ h6 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes loaderbar {
+  from {
+    transform: scaleY(0);
+    background: linear-gradient(to top, #545B77 10%, #374259 50%, #2d3649 90%);
+  }
+  to {
+    transform: scaleY(1);
+    background: linear-gradient(to top, #545B77 10%, #374259 50%, #2d3649 90%);
+  }
+}
+@keyframes player {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }/*# sourceMappingURL=style.css.map */
