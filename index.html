@@ -67,6 +67,45 @@
         <div class="settings__container popup__container">
             <h3 class="settings__heading popup__heading">Settings</h3>
             <div class="settings__item">
+                <span class="settings__item__label">Match type</span>
+                <div class="settings__item__select" data-select="true" data-value="on">
+                    <select name="setting-match-type">
+                        <option value="8-ball">8 Ball</option>
+                        <option value="9-ball">9 Ball</option>
+                        <option value="10-ball">10 Ball</option>
+                        <option value="mini-rotation">Mini Rotation</option>
+                        <option value="rotation">Rotation 61</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings__item settings__item--helper">
+                <span class="settings__item__label">Round system</span>
+                <div class="settings__item__helper">
+                    <div class="tooltip">
+                        <p>Round system sets the winning condition of the match.</p>
+                        <p><strong>Race to</strong>: the first player reach the finish score wins.</p>
+                        <p><strong>Best of</strong>: total match available is based on finish score. Each player's win count is combined to meet the finish score and player with higher score is the winner.</p>
+                        <p><strong>Free</strong>: no score limitation.</p>
+                    </div>
+                </div>
+                <div class="settings__item__select" data-select="true" data-value="on">
+                    <select name="setting-round-system">
+                        <option value="race-to">Race to</option>
+                        <option value="best-of">Best of</option>
+                        <option value="free">Free</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings__item">
+                <span class="settings__item__label">Finish score</span>
+                <div class="settings__item__text" data-select="true" data-value="on">
+                    <input type="text" name="finish-score" value="0" />
+                </div>
+            </div>
+
+            <div class="settings__item settings__item--divider"></div>
+
+            <div class="settings__item">
                 <span class="settings__item__label">Fouls disqualification</span>
                 <span class="settings__item__toggle" data-value="off"></span>
             </div>
@@ -78,6 +117,7 @@
                 <span class="settings__item__label">Label</span>
                 <span class="settings__item__toggle" data-value="on"></span>
             </div>
+            
             <span class="settings__container__close popup__container__close"></span>
         </div>
     </aside>
