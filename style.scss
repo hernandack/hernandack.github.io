@@ -33,6 +33,9 @@ body, form, input {
     &__item {
         cursor: pointer;
         padding: 15px 30px;
+        @media (max-width: 767.98px) {
+            padding: 15px;
+        }
         &:not(:last-child) {
             border-right: 1px solid $color-bg;
         }
@@ -54,15 +57,21 @@ body, form, input {
         &__label {
             display: flex;
             align-items: center;
+            @media (max-width: 767.98px) {
+                font-size: 0;
+            }
             &::before {
                 display: inline-flex;
-                height: 1em;
-                width: 1em;
+                height: 1rem;
+                width: 1rem;
                 background-size: contain;
                 content: "";
                 margin-right: 9px;
                 background-image: url('data:image/svg+xml,<svg fill="%23ffffff" width="100px" height="100px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="%23ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2,21h8a1,1,0,0,0,0-2H3.071A7.011,7.011,0,0,1,10,13a5.044,5.044,0,1,0-3.377-1.337A9.01,9.01,0,0,0,1,20,1,1,0,0,0,2,21ZM10,5A3,3,0,1,1,7,8,3,3,0,0,1,10,5ZM23,16a1,1,0,0,1-1,1H19v3a1,1,0,0,1-2,0V17H14a1,1,0,0,1,0-2h3V12a1,1,0,0,1,2,0v3h3A1,1,0,0,1,23,16Z"></path></g></svg>');
                 background-repeat: no-repeat;
+                @media (max-width: 767.98px) {
+                    margin-right: 0;
+                }
             }
             &:empty {
                 &::before {
@@ -119,14 +128,14 @@ body, form, input {
     padding: 30px 50px;
     background-color: darken($color-bg, 5%);
     color: $color-light;
-    min-height: calc(100vh - 48px);
+    min-height: calc(100vh - 46px);
     width: 100%;
     display: flex;
     flex-direction: column;
     place-content: center;
-    margin-top: 48px;
+    margin-top: 46px;
     .loader {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -167,11 +176,20 @@ body, form, input {
         @if ($i < 5) {
             &--#{$i} {
                 grid-template-columns: repeat($i, minmax(10vw, 1fr));
+                @media (max-width: 767.98px) {
+                    grid-template-columns: 1fr;
+                }
+                @media (max-width: 767.98px) and (orientation: landscape) {
+                    grid-template-columns: 1fr 1fr;
+                }
             }
         }
         @else {
             &--#{$i} {
                 grid-template-columns: repeat(4, minmax(10vw, 1fr));
+                @media (max-width: 767.98px) {
+                    grid-template-columns: 1fr;
+                }
             }
         }
     }
@@ -238,6 +256,8 @@ body, form, input {
             padding: 10px;
             background-color: $color-alt;
             position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &__label {
                 font-size: 1.8em;
             }
@@ -257,6 +277,12 @@ body, form, input {
                 transition: opacity .3s ease-in, visibility .05s .3s;
                 filter: invert(1);
                 z-index: 3;
+
+                @media (max-width: 767.98px) {
+                    @at-root [data-already-running="true"] & {
+                        display: none !important;
+                    }
+                }
             }
             &:hover {
                 .player__name__edit {
@@ -429,6 +455,9 @@ body, form, input {
         width: 100%;
         text-align: center;
         margin-bottom: .8em;
+        @media (max-width: 767.98px) {
+            font-size: 1.5rem;
+        }
     }
     &__container {
         width: clamp(300px, 30%, 900px);
@@ -498,6 +527,9 @@ body, form, input {
             }
             &__name {
                 font-size: 20px;
+                max-width: 65%;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
             &__winscore {
                 &::before {
@@ -510,6 +542,7 @@ body, form, input {
             display: flex;
             flex-direction: column;
             width: 100%;
+            display: none;
             &__group {
                 display: flex;
                 flex-direction: column;
@@ -533,6 +566,7 @@ body, form, input {
     }
     &__item {
         display: flex;
+        align-items: center;
         font-weight: bold;
         padding: 5px 10px;
         border: 1px solid lighten($color-alt, 10%);
