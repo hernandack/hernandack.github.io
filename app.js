@@ -3,6 +3,14 @@ const playersMax = 8
 
 let leaderscore = []
 
+const songs = [ 'energetic-indie-rock-jump-112179.mp3',
+                'stylish-rock-beat-trailer-116346.mp3',
+                'guitar-electro-sport-trailer-115571.mp3',
+                'price-of-freedom-33106.mp3',
+                'best-time-112194.mp3',
+                'abstract-future-bass-162604.mp3'
+                ]
+
 
 const addPlayer = (playerContainer) => {
     if (players.length >= playersMax) return
@@ -148,6 +156,18 @@ const clearGame = (removeScore=false) => {
     }
 }
 
+const generateSongList = () => {
+    if (songs !== null && songs.length > 0) {
+        const songListSelect = document.querySelector('#songList')
+        songs.forEach(song => {
+            const sOpt = document.createElement('option')
+            sOpt.setAttribute('value', song)
+            sOpt.innerText = song.replaceAll('-', ' ').replace('.mp3', '').substring(0, song.lastIndexOf('-'))
+            songListSelect.appendChild(sOpt)
+        })
+    }
+}
+
 window.onload = () => {
     
     const addPlyButton = document.querySelector('[data-config="add-player"]')
@@ -156,8 +176,11 @@ window.onload = () => {
     const leaderButton = document.querySelector('[data-config="leaderboard"]')
     const fullButton = document.querySelector('[data-config="fullscreen"]')
     const settingsButton = document.querySelector('[data-config="settings"]')
+    const changeSongButton = document.querySelector('[data-control="change-song"]')
 
     const elPlayers = document.querySelector('.players')
+
+    generateSongList()
 
     // add new player
     addPlyButton.addEventListener('click', (e) => {
@@ -275,6 +298,7 @@ window.onload = () => {
     if (settingsPopup !== null) {
         const settingsPopupClose = settingsPopup.querySelector('.popup__container__close')
         const settingsContainer = document.querySelector('.settings__container')
+        const songListSelect = document.querySelector('#songList')
 
         settingsButton.addEventListener('click', () => {
             settingsPopup.classList.add('popup--open')
@@ -299,6 +323,15 @@ window.onload = () => {
 
         settingsPopupClose.addEventListener('click', () => {
             settingsPopup.classList.remove('popup--open')
+        })
+
+        // change song
+        changeSongButton.addEventListener('click', () => {
+            changeSongButton.parentElement.querySelector('audio').setAttribute('src', songs[Math.floor(Math.random() * songs.length)])
+        })
+
+        songListSelect.addEventListener('change', () => {
+            songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', songListSelect.value)
         })
     }
     
@@ -345,6 +378,16 @@ window.onload = () => {
         // fouls
         if (e.target.matches('.player__fouls') || e.target.matches('.player__foul')) {
             const pid = parseInt(e.target.closest('.player').getAttribute('data-player-id'))
+
+            if (e.target.matches('.player__foul--reset')) {
+                players[pid - 1].fouls = 0
+                e.target.closest('.player').querySelectorAll('.player__foul').forEach(el => {
+                    el.classList.remove('player__foul--on')
+                    return
+                })
+                return
+            }
+
             players[pid - 1].fouls += 1
             e.target.setAttribute('data-fouls', players[pid - 1].fouls)
             

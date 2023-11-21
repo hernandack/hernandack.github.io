@@ -19,6 +19,15 @@
         <div class="config__item bl" data-config="reset"><span class="config__item__label">Reset Game</span></div>
     </header>
 
+    <aside class="intro">
+        <div class="intro__block"></div>
+        <div class="intro__block"></div>
+        <div class="intro__block"></div>
+        <div class="intro__block"></div>
+        <div class="intro__block"></div>
+        <div class="intro__block"></div>
+    </aside>
+
     <main class="page">
 
         <section class="players players--3">
@@ -44,6 +53,7 @@
                     <span class="player__foul"></span>
                     <span class="player__foul"></span>
                     <span class="player__foul"></span>
+                    <span class="player__foul player__foul--reset"></span>
                 </div>
 
                 <!-- remove -->
@@ -141,6 +151,18 @@
             <div class="settings__item">
                 <span class="settings__item__label">Label</span>
                 <span class="settings__item__toggle" data-value="on"></span>
+            </div>
+
+            <div class="settings__item">
+                <div class="settings__item__audio">
+                    <div data-control="change-song">Change Song</div>
+                    <div class="song-list">
+                        <select name="song-list" id="songList"></select>
+                    </div>
+                    <audio controls crossorigin="">
+                        <source src="energetic-indie-rock-jump-112179.mp3" type="audio/mp3">
+                    </audio>
+                </div>
             </div>
             
             <span class="settings__container__close popup__container__close"></span>
