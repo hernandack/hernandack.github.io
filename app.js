@@ -168,6 +168,18 @@ const generateSongList = () => {
     }
 }
 
+async function getScreenLock() {
+    if(isScreenLockSupported()){
+        let screenLock;
+        try {
+            screenLock = await navigator.wakeLock.request('screen');
+        } catch(err) {
+            console.log(err.name, err.message);
+        }
+        return screenLock;
+    }
+}
+
 window.onload = () => {
     
     const addPlyButton = document.querySelector('[data-config="add-player"]')
