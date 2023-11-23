@@ -3,12 +3,22 @@ const playersMax = 8
 
 let leaderscore = []
 
-const songs = [ 'energetic-indie-rock-jump-112179.mp3',
+const songs = [ 'whistle-vibes-172471.mp3',
+                'energetic-indie-rock-jump-112179.mp3',
                 'stylish-rock-beat-trailer-116346.mp3',
                 'guitar-electro-sport-trailer-115571.mp3',
                 'price-of-freedom-33106.mp3',
                 'best-time-112194.mp3',
-                'abstract-future-bass-162604.mp3'
+                'abstract-future-bass-162604.mp3',
+                'once-in-paris-168895.mp3',
+                'midnight-123895.mp3',
+                'good-night-160166.mp3',
+                'monday-blues-1015.mp3',
+                'rhythm-and-blues-shuffle-2711.mp3',
+                'piano-blues-and-gospel-sisters-choir-humming-9067.mp3',
+                'funk-it-49967.mp3',
+                'a-jazz-piano-110481.mp3',
+                'upbeat-funk-commercial-112624.mp3'
                 ]
 
 
@@ -311,6 +321,7 @@ window.onload = () => {
         const settingsPopupClose = settingsPopup.querySelector('.popup__container__close')
         const settingsContainer = document.querySelector('.settings__container')
         const songListSelect = document.querySelector('#songList')
+        const songAudio = document.querySelector('#songs')
 
         settingsButton.addEventListener('click', () => {
             settingsPopup.classList.add('popup--open')
@@ -339,12 +350,20 @@ window.onload = () => {
 
         // change song
         changeSongButton.addEventListener('click', () => {
-            changeSongButton.parentElement.querySelector('audio').setAttribute('src', songs[Math.floor(Math.random() * songs.length)])
+            changeSongButton.parentElement.querySelector('audio').setAttribute('src', 'songs/' + songs[Math.floor(Math.random() * songs.length)])
         })
 
         songListSelect.addEventListener('change', () => {
-            songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', songListSelect.value)
+            songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', 'songs/' + songListSelect.value)
         })
+
+        songAudio.addEventListener('ended', () => {
+            songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', 'songs/' + songs[Math.floor(Math.random() * songs.length)])
+        })
+        songAudio.addEventListener('canplay', () => {
+            songAudio.play()
+        })
+        
     }
     
 

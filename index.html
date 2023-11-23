@@ -153,14 +153,16 @@
                 <span class="settings__item__toggle" data-value="on"></span>
             </div>
 
+            <div class="settings__item settings__item--divider"></div>
+
             <div class="settings__item">
                 <div class="settings__item__audio">
                     <div data-control="change-song">Change Song</div>
                     <div class="song-list">
                         <select name="song-list" id="songList"></select>
                     </div>
-                    <audio controls crossorigin="">
-                        <source src="energetic-indie-rock-jump-112179.mp3" type="audio/mp3">
+                    <audio id="songs" controls crossorigin>
+                        <source src="songs/whistle-vibes-172471.mp3" type="audio/mp3">
                     </audio>
                 </div>
             </div>
