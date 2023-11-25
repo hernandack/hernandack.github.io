@@ -14,6 +14,7 @@
         <div class="config__item" data-config="add-player"><span class="config__item__label">Add Player</span></div>
         <div class="config__item" data-config="leaderboard"><span class="config__item__label">Leaderboard</span></div>
         <div class="config__item" data-config="next-game"><span class="config__item__label">Next Game</span></div>
+        <div class="config__item config__item--passive"><span data-label="match-type">8 Ball</span> - <span data-label="round-type">Race to</span> <span data-label="finish-count">0 (no limit)</span></div>
         <div class="config__item config__item--small ml bl" data-config="settings"><span class="config__item__label"></span></div>
         <div class="config__item config__item--small bl" data-config="fullscreen"><span class="config__item__label"></span></div>
         <div class="config__item bl" data-config="reset"><span class="config__item__label">Reset Game</span></div>
@@ -28,7 +29,7 @@
         <div class="intro__block"></div>
     </aside>
 
-    <main class="page">
+    <main class="page game game--8-ball">
 
         <section class="players players--3">
             <article class="board player player--template" data-player-id="0">
@@ -46,9 +47,22 @@
                     </div>
                 </div>
                 <div class="player__toolbar">
-                    <span class="player__toolbar__item" data-tool="score" data-value="-1">-1</span>
-                    <span class="player__toolbar__item" data-tool="score" data-value="+1">+1</span>
-                    <span class="player__toolbar__item" data-tool="score" data-value="+2">+2</span>
+                    <div class="player__toolbar__item" data-tool="score" data-value="-1">-1</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+1">+1</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+2">+2</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+3">+3</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+4">+4</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+5">+5</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+6">+6</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+7">+7</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+8">+8</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+9">+9</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+10">+10</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+11">+11</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+12">+12</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+13">+13</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+14">+14</div>
+                    <div class="player__toolbar__item" data-tool="score" data-value="+15">+15</div>
                 </div>
 
                 <div class="player__fouls" data-fouls="0">
@@ -67,7 +81,7 @@
 
 
         <!-- loader when empty / intro -->
-        <div class="loader">
+        <!-- <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -88,7 +102,7 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
-        </div>
+        </div> -->
         
     </main>
 
@@ -108,11 +122,11 @@
                 <span class="settings__item__label">Match type</span>
                 <div class="settings__item__select" data-select="true" data-value="on">
                     <select name="setting-match-type">
-                        <option value="8-ball">8 Ball</option>
-                        <option value="9-ball">9 Ball</option>
-                        <option value="10-ball">10 Ball</option>
-                        <option value="mini-rotation">Mini Rotation</option>
-                        <option value="rotation">Rotation 61</option>
+                        <option value="8 Ball">8 Ball</option>
+                        <option value="9 Ball">9 Ball</option>
+                        <option value="10 Ball">10 Ball</option>
+                        <option value="Mini Rotation">Mini Rotation</option>
+                        <option value="Rotation">Rotation 61</option>
                     </select>
                 </div>
             </div>
@@ -127,17 +141,17 @@
                     </div>
                 </div>
                 <div class="settings__item__select" data-select="true" data-value="on">
-                    <select name="setting-round-system">
-                        <option value="race-to">Race to</option>
-                        <option value="best-of">Best of</option>
-                        <option value="free">Free</option>
+                    <select name="setting-round-type">
+                        <option value="Race to">Race to</option>
+                        <option value="Best of">Best of</option>
+                        <option value="Free">Free</option>
                     </select>
                 </div>
             </div>
             <div class="settings__item">
                 <span class="settings__item__label">Finish score</span>
                 <div class="settings__item__text" data-select="true" data-value="on">
-                    <input type="text" name="finish-score" value="0" />
+                    <input type="number" name="finish-count" value="0" />
                 </div>
             </div>
 

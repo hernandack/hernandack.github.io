@@ -39,11 +39,19 @@ body, form, input {
         &:not(:last-child) {
             border-right: 1px solid $color-bg;
         }
+        &:hover {
+            background-color: lighten($color-alt, 9%);
+        }
         &--small {
             padding: 15px;
         }
-        &:hover {
-            background-color: lighten($color-alt, 9%);
+        &--passive {
+            flex: 1 0 auto;
+            text-align: right;
+            &:hover {
+                background-color: transparent;
+                cursor: auto;
+            }
         }
         &.ml {
             margin-left: auto;
@@ -390,7 +398,7 @@ body, form, input {
                 }
                 [data-tool="resetPushout"] {
                     display: block;
-                    width: 30px;
+                    width: 50px;
                     height: 100%;
                     position: absolute;
                     z-index: 1;
@@ -424,8 +432,8 @@ body, form, input {
             width: max-content;
             align-self: center;
             .player__foul {
-                width: 20px;
-                height: 20px;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
                 background-color: white;
                 margin: 10px;
@@ -555,6 +563,36 @@ body, form, input {
             animation: popup .5s .2s ease-in forwards;
         }
     };
+}
+
+.game {
+    &--8-ball, &--9-ball, &--10-ball  {
+        .player__toolbar {
+            &__item {
+                &:nth-child(1), &:nth-child(3) ~ * {
+                    display: none;
+                }
+            }
+        }
+    }
+    &--mini-rotation {
+        .player__toolbar {
+            &__item {
+                &:nth-child(3) ~ * {
+                    display: none;
+                }
+            }
+        }
+    }
+    &--rotation {
+        .player__toolbar {
+            flex-wrap: wrap;
+            &__item {
+                width: auto;
+                flex: 1 0 auto;
+            }
+        }
+    }
 }
 
 .leaderboard {

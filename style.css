@@ -65,11 +65,19 @@ h6 {
 .config__item:not(:last-child) {
   border-right: 1px solid #374259;
 }
+.config__item:hover {
+  background-color: #677092;
+}
 .config__item--small {
   padding: 15px;
 }
-.config__item:hover {
-  background-color: #677092;
+.config__item--passive {
+  flex: 1 0 auto;
+  text-align: right;
+}
+.config__item--passive:hover {
+  background-color: transparent;
+  cursor: auto;
 }
 .config__item.ml {
   margin-left: auto;
@@ -511,7 +519,7 @@ h6 {
 }
 .players .player__toolbar__item [data-tool=resetPushout] {
   display: block;
-  width: 30px;
+  width: 50px;
   height: 100%;
   position: absolute;
   z-index: 1;
@@ -543,8 +551,8 @@ h6 {
   align-self: center;
 }
 .players .player__fouls .player__foul {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: white;
   margin: 10px;
@@ -674,6 +682,20 @@ h6 {
 }
 .popup--open .popup__container {
   animation: popup 0.5s 0.2s ease-in forwards;
+}
+
+.game--8-ball .player__toolbar__item:nth-child(1), .game--8-ball .player__toolbar__item:nth-child(3) ~ *, .game--9-ball .player__toolbar__item:nth-child(1), .game--9-ball .player__toolbar__item:nth-child(3) ~ *, .game--10-ball .player__toolbar__item:nth-child(1), .game--10-ball .player__toolbar__item:nth-child(3) ~ * {
+  display: none;
+}
+.game--mini-rotation .player__toolbar__item:nth-child(3) ~ * {
+  display: none;
+}
+.game--rotation .player__toolbar {
+  flex-wrap: wrap;
+}
+.game--rotation .player__toolbar__item {
+  width: auto;
+  flex: 1 0 auto;
 }
 
 .leaderboard__container .leaderboard__list {

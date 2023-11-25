@@ -3,6 +3,10 @@ const playersMax = 8
 
 let leaderscore = []
 
+let matchType = "8 Ball"
+let roundType = "race-to"
+let finishCount = 0
+
 const songs = [ 'whistle-vibes-172471.mp3',
                 'energetic-indie-rock-jump-112179.mp3',
                 'stylish-rock-beat-trailer-116346.mp3',
@@ -178,6 +182,38 @@ const generateSongList = () => {
     }
 }
 
+const updateMatchType = (pMatchType, elMatchType=null) => {
+    if (pMatchType !== null) {
+        matchType = pMatchType
+    }
+    if (elMatchType !== null) {
+        elMatchType.innerText = pMatchType
+    }
+    if (document.querySelector('.game') !== null) {
+        const elGame = document.querySelector('.game')
+        removeClassPrefix(elGame, 'game--')
+        elGame.classList.add('game--' + pMatchType.toString().toLowerCase().replace(' ','-'))
+    }
+}
+
+const updateRoundType = (pRoundType, elRoundType=null) => {
+    if (pRoundType !== null) {
+        roundType = pRoundType
+    }
+    if (elRoundType !== null) {
+        elRoundType.innerText = pRoundType
+    }
+}
+
+const updateFinishCount = (pFinishCount, elFinishCount=null) => {
+    if (pFinishCount !== null) {
+        roundType = pFinishCount != '' ? pFinishCount : 0
+    }
+    if (elFinishCount !== null) {
+        elFinishCount.innerText = pFinishCount == 0 ? pFinishCount + ' (no limit)' : pFinishCount
+    }
+}
+
 async function getScreenLock() {
     if(isScreenLockSupported()){
         let screenLock;
@@ -199,6 +235,11 @@ window.onload = () => {
     const fullButton = document.querySelector('[data-config="fullscreen"]')
     const settingsButton = document.querySelector('[data-config="settings"]')
     const changeSongButton = document.querySelector('[data-control="change-song"]')
+
+    // config
+    const configMatchType = document.querySelector('select[name="setting-match-type"]')
+    const configRoundType = document.querySelector('select[name="setting-round-type"]')
+    const configFinishCount = document.querySelector('input[name="finish-count"]')
 
     const elPlayers = document.querySelector('.players')
 
@@ -352,16 +393,26 @@ window.onload = () => {
         changeSongButton.addEventListener('click', () => {
             changeSongButton.parentElement.querySelector('audio').setAttribute('src', 'songs/' + songs[Math.floor(Math.random() * songs.length)])
         })
-
         songListSelect.addEventListener('change', () => {
             songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', 'songs/' + songListSelect.value)
         })
-
         songAudio.addEventListener('ended', () => {
             songListSelect.closest('.settings__item').querySelector('audio').setAttribute('src', 'songs/' + songs[Math.floor(Math.random() * songs.length)])
         })
         songAudio.addEventListener('canplay', () => {
             songAudio.play()
+        })
+
+
+        // match config
+        configMatchType.addEventListener('change', () => {
+            updateMatchType(configMatchType.value, document.querySelector('.config__item [data-label="match-type"]'))
+        })
+        configRoundType.addEventListener('change', () => {
+            updateRoundType(configRoundType.value, document.querySelector('.config__item [data-label="round-type"]'))
+        })
+        configFinishCount.addEventListener('change', () => {
+            updateFinishCount(configFinishCount.value, document.querySelector('.config__item [data-label="finish-count"]'))
         })
         
     }
