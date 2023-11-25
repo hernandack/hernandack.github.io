@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoolBoard - Pool Toolkits</title>
 
-    <link rel="stylesheet" href="style.css?v=1.0">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
 
@@ -41,7 +41,9 @@
                 <div class="player__score">{{ player.score }}</div>
 
                 <div class="player__toolbar">
-                    <span class="player__toolbar__item" data-tool="pushout" data-pushout="false"></span>
+                    <div class="player__toolbar__item" data-tool="pushout" data-pushout="false">
+                        <span class="" data-tool="resetPushout"></span>
+                    </div>
                 </div>
                 <div class="player__toolbar">
                     <span class="player__toolbar__item" data-tool="score" data-value="-1">-1</span>
@@ -58,6 +60,7 @@
 
                 <!-- remove -->
                 <span class="player__remove"></span>
+                <span class="player__reset-dq"></span>
             </article>
             
         </section>

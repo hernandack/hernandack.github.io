@@ -405,6 +405,12 @@ window.onload = () => {
             if (e.target.classList.contains('player__toolbar__item--disabled')) return
             e.target.classList.add('player__toolbar__item--disabled')
         }
+        if (e.target.matches('[data-tool="resetPushout"]')) {
+            const pid = parseInt(e.target.closest('.player').getAttribute('data-player-id'))
+            players[pid - 1].pushOut = false
+            e.target.closest('.player').querySelector('[data-tool="pushout"]').classList.remove('player__toolbar__item--disabled')
+            return
+        }
 
         // fouls
         if (e.target.matches('.player__fouls') || e.target.matches('.player__foul')) {
