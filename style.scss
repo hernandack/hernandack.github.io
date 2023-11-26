@@ -599,6 +599,13 @@ body, form, input, select {
             }
         }
     }
+    &.game-foul-dq--false {
+        .players {
+            .player__fouls {
+                display: none;
+            }
+        }
+    }
 }
 
 .leaderboard {

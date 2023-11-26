@@ -29,7 +29,7 @@
         <div class="intro__block"></div>
     </aside>
 
-    <main class="page game game--8-ball">
+    <main class="page game">
 
         <section class="players players--3">
             <article class="board player player--template" data-player-id="0">
@@ -79,31 +79,6 @@
             </article>
             
         </section>
-
-
-        <!-- loader when empty / intro -->
-        <!-- <div class="loader">
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-        </div> -->
         
     </main>
 
@@ -119,7 +94,7 @@
     <aside class="settings popup">
         <div class="settings__container popup__container">
             <h3 class="settings__heading popup__heading">Settings</h3>
-            <div class="settings__item">
+            <div class="settings__item" data-setting="match-type">
                 <span class="settings__item__label">Match type</span>
                 <div class="settings__item__select" data-select="true" data-value="on">
                     <select name="setting-match-type">
@@ -131,7 +106,7 @@
                     </select>
                 </div>
             </div>
-            <div class="settings__item settings__item--helper">
+            <div class="settings__item settings__item--helper" data-setting="round-type">
                 <span class="settings__item__label">Round system</span>
                 <div class="settings__item__helper">
                     <div class="tooltip">
@@ -149,7 +124,7 @@
                     </select>
                 </div>
             </div>
-            <div class="settings__item">
+            <div class="settings__item" data-setting="finish-count">
                 <span class="settings__item__label">Finish score</span>
                 <div class="settings__item__text" data-select="true" data-value="on">
                     <input type="number" name="finish-count" value="0" />
@@ -158,22 +133,18 @@
 
             <div class="settings__item settings__item--divider"></div>
 
-            <div class="settings__item">
+            <div class="settings__item" data-setting="foul-dq">
                 <span class="settings__item__label">Fouls disqualification</span>
                 <span class="settings__item__toggle" data-value="off"></span>
             </div>
-            <div class="settings__item">
+            <div class="settings__item" data-setting="foul-min">
                 <span class="settings__item__label">Foul minus score</span>
-                <span class="settings__item__toggle" data-value="on"></span>
-            </div>
-            <div class="settings__item">
-                <span class="settings__item__label">Label</span>
                 <span class="settings__item__toggle" data-value="on"></span>
             </div>
 
             <div class="settings__item settings__item--divider"></div>
 
-            <div class="settings__item">
+            <div class="settings__item" data-setting="song">
                 <div class="settings__item__audio">
                     <div data-control="change-song">Change Song</div>
                     <div class="song-list">

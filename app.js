@@ -3,9 +3,17 @@ const playersMax = 8
 
 let leaderscore = []
 
-let matchType = "8 Ball"
-let roundType = "race-to"
-let finishCount = 0
+// let matchType = "8 Ball"
+// let roundType = "race-to"
+// let finishCount = 0
+
+const config = {
+    matchType : "9 Ball",
+    roundType : "Race to",
+    finishCount : 0,
+    foulDQ : true,
+    foulMin : false
+}
 
 const songs = [ 'whistle-vibes-172471.mp3',
                 'energetic-indie-rock-jump-112179.mp3',
@@ -184,7 +192,7 @@ const generateSongList = () => {
 
 const updateMatchType = (pMatchType, elMatchType=null) => {
     if (pMatchType !== null) {
-        matchType = pMatchType
+        config.matchType = pMatchType
     }
     if (elMatchType !== null) {
         elMatchType.innerText = pMatchType
@@ -198,7 +206,7 @@ const updateMatchType = (pMatchType, elMatchType=null) => {
 
 const updateRoundType = (pRoundType, elRoundType=null) => {
     if (pRoundType !== null) {
-        roundType = pRoundType
+        config.roundType = pRoundType
     }
     if (elRoundType !== null) {
         elRoundType.innerText = pRoundType
@@ -207,10 +215,38 @@ const updateRoundType = (pRoundType, elRoundType=null) => {
 
 const updateFinishCount = (pFinishCount, elFinishCount=null) => {
     if (pFinishCount !== null) {
-        roundType = pFinishCount != '' ? pFinishCount : 0
+        config.finishCount = pFinishCount != '' ? pFinishCount : 0
     }
     if (elFinishCount !== null) {
         elFinishCount.innerText = pFinishCount == 0 ? pFinishCount + ' (no limit)' : pFinishCount
+    }
+}
+
+const updateFoulDq = (pFoulDq, elFoulDq=null) => {
+    if (pFoulDq !== null) {
+        config.foulDQ = pFoulDq
+    }
+    if (elFoulDq !== null) {
+        elFoulDq.setAttribute('data-value', pFoulDq ? 'on' : 'false')
+    }
+    if (document.querySelector('.game') !== null) {
+        const elGame = document.querySelector('.game')
+        removeClassPrefix(elGame, 'game-foul-dq--')
+        elGame.classList.add('game-foul-dq--' + config.foulDQ)
+    }
+}
+
+const updateFoulMin = (pFoulMin, elFoulMin=null) => {
+    if (pFoulMin !== null) {
+        config.foulMin = pFoulMin
+    }
+    if (elFoulMin !== null) {
+        elFoulMin.setAttribute('data-value', pFoulMin ? 'on' : 'false')
+    }
+    if (document.querySelector('.game') !== null) {
+        const elGame = document.querySelector('.game')
+        removeClassPrefix(elGame, 'game-foul-min--')
+        elGame.classList.add('game-foul-min--' + config.foulMin)
     }
 }
 
@@ -240,10 +276,30 @@ window.onload = () => {
     const configMatchType = document.querySelector('select[name="setting-match-type"]')
     const configRoundType = document.querySelector('select[name="setting-round-type"]')
     const configFinishCount = document.querySelector('input[name="finish-count"]')
+    const configFoulDq = document.querySelector('[data-setting="foul-dq"] .settings__item__toggle')
+    const configFoulMin = document.querySelector('[data-setting="foul-min"] .settings__item__toggle')
 
     const elPlayers = document.querySelector('.players')
 
+    // songs
     generateSongList()
+
+    // config init
+    configMatchType.value = config.matchType
+    configRoundType.value = config.roundType
+    configFinishCount.value = config.finishCount
+    configFoulDq.setAttribute('data-value', config.foulDQ ? 'on' : 'off')
+    configFoulMin.setAttribute('data-value', config.foulMin ? 'on' : 'off')
+    document.querySelector('.config__item.config__item--passive [data-label="match-type"]').innerText = config.matchType
+    document.querySelector('.config__item.config__item--passive [data-label="round-type"]').innerText = config.roundType
+    document.querySelector('.config__item.config__item--passive [data-label="finish-count"]').innerText = config.finishCount == 0 ? 0 + ' (no limit)' : config.finishCount
+    if (document.querySelector('.game') !== null) {
+        const elGame = document.querySelector('.game')
+        elGame.classList.add('game--' + config.matchType.toString().toLowerCase().replace(' ','-'))
+        elGame.classList.add('game-foul-dq--' + config.foulDQ)
+        elGame.classList.add('game-foul-min--' + config.foulMin)
+    }
+
 
     // add new player
     addPlyButton.addEventListener('click', (e) => {
@@ -414,7 +470,14 @@ window.onload = () => {
         configFinishCount.addEventListener('change', () => {
             updateFinishCount(configFinishCount.value, document.querySelector('.config__item [data-label="finish-count"]'))
         })
-        
+        configFoulDq.addEventListener('click', () => {
+            updateFoulDq(configFoulDq.getAttribute('data-value') != 'on' ? true : false)
+            console.log(config)
+        })
+        configFoulMin.addEventListener('click', () => {
+            updateFoulMin(configFoulMin.getAttribute('data-value') != 'on' ? true : false)
+            console.log(config)
+        })
     }
     
 
@@ -481,6 +544,11 @@ window.onload = () => {
             
             e.target.querySelectorAll('.player__foul')[players[pid - 1].fouls - 1].classList.add('player__foul--on')
 
+            if (e.target.closest('.game').classList.contains('game-foul-min--true')) {
+                console.log('min true foul')
+                players[pid - 1].score -= 1
+                e.target.closest('.player').querySelector('.player__score').innerText = players[pid - 1].score
+            }
 
             if (players[pid - 1].fouls >= 3) {
                 e.target.closest('.player').classList.add('player--disqualified')

@@ -700,6 +700,9 @@ h6 {
 .game--rotation .player__toolbar__item[data-win] {
   display: none;
 }
+.game.game-foul-dq--false .players .player__fouls {
+  display: none;
+}
 
 .leaderboard__container .leaderboard__list {
   display: flex;
