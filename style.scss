@@ -9,7 +9,7 @@ $color-light: white;
     margin: 0;
     user-select: none;
 }
-body, form, input {
+body, form, input, select {
     font-family: 'Courier New', Courier, monospace;
 }
 @for $i from 1 through 6 {
@@ -567,9 +567,12 @@ body, form, input {
 
 .game {
     &--8-ball, &--9-ball, &--10-ball  {
-        .player__toolbar {
-            &__item {
-                &:nth-child(1), &:nth-child(3) ~ * {
+        .player__toolbar.player__toolbar--score {
+            .player__toolbar__item {
+                // &:nth-child(1), &:nth-child(3) ~ * {
+                //     display: none;
+                // }
+                &:not([data-win]) {
                     display: none;
                 }
             }
@@ -590,6 +593,9 @@ body, form, input {
             &__item {
                 width: auto;
                 flex: 1 0 auto;
+                &[data-win] {
+                    display: none;
+                }
             }
         }
     }

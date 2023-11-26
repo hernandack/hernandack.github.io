@@ -7,7 +7,7 @@
           user-select: none;
 }
 
-body, form, input {
+body, form, input, select {
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -684,7 +684,7 @@ h6 {
   animation: popup 0.5s 0.2s ease-in forwards;
 }
 
-.game--8-ball .player__toolbar__item:nth-child(1), .game--8-ball .player__toolbar__item:nth-child(3) ~ *, .game--9-ball .player__toolbar__item:nth-child(1), .game--9-ball .player__toolbar__item:nth-child(3) ~ *, .game--10-ball .player__toolbar__item:nth-child(1), .game--10-ball .player__toolbar__item:nth-child(3) ~ * {
+.game--8-ball .player__toolbar.player__toolbar--score .player__toolbar__item:not([data-win]), .game--9-ball .player__toolbar.player__toolbar--score .player__toolbar__item:not([data-win]), .game--10-ball .player__toolbar.player__toolbar--score .player__toolbar__item:not([data-win]) {
   display: none;
 }
 .game--mini-rotation .player__toolbar__item:nth-child(3) ~ * {
@@ -696,6 +696,9 @@ h6 {
 .game--rotation .player__toolbar__item {
   width: auto;
   flex: 1 0 auto;
+}
+.game--rotation .player__toolbar__item[data-win] {
+  display: none;
 }
 
 .leaderboard__container .leaderboard__list {
